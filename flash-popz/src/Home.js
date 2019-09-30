@@ -6,7 +6,8 @@ class Home extends Component{
   render(props){
       return(
         <div className="home">
-          Home
+          <div>Home</div>
+          <div>Episode List</div>
         </div>
       )
   }

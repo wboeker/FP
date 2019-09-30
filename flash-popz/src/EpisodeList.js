@@ -6,7 +6,7 @@ class EpisodeList extends Component{
   render(props){
       return(
         <div className="episode-list">
-          Episode List
+          on episode list page!
         </div>
       )
   }
