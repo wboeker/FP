@@ -1,0 +1,42 @@
+.row-wrapper {
+  display: flex;
+}
+
+h1 {
+  text-align: left;
+  margin-left: 6%;
+  margin-bottom: 5px;
+  color: white;
+}
+
+hr {
+  width: 90%;
+  border: 1.5px solid #eaeaea;
+}
+
+.speech-wrapper {
+  width: 170px;
+  margin-left: 5%;
+}
+
+.speech-bubble {
+	position: relative;
+	background: #00aabb;
+	border-radius: .4em;
+  height: 50px;
+}
+
+.speech-bubble:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 0;
+	height: 0;
+	border: 20px solid transparent;
+	border-top-color: #00aabb;
+	border-bottom: 0;
+	border-left: 0;
+	margin-left: -10px;
+	margin-bottom: -20px;
+}
