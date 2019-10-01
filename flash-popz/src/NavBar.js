@@ -1,9 +1,10 @@
 import React from 'react';
 import { Dropdown } from 'react-bootstrap';
+import './NavBar.css';
 
 function NavBar() {
   return (
-    <div className="navbar">
+    <div className="nav-bar">
       <Dropdown>
         <Dropdown.Toggle variant="primary" id="dropdown-basic">
           Options

@@ -1,5 +1,13 @@
+.header {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
 .row-wrapper {
   display: flex;
+  justify-content: space-between;
 }
 
 h1 {
@@ -15,7 +23,7 @@ hr {
 }
 
 .speech-wrapper {
-  width: 170px;
+  width: 205px;
   margin-left: 5%;
 }
 
@@ -23,7 +31,7 @@ hr {
 	position: relative;
 	background: #00aabb;
 	border-radius: .4em;
-  height: 50px;
+  height: 58px;
 }
 
 .speech-bubble:after {
