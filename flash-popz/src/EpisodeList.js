@@ -14,7 +14,9 @@ class EpisodeList extends Component{
             {shows.map((show) =>
               {
                   return(
-                    <Episode image={show}/>
+                      <a href="/">
+                        <Episode image={show}/>
+                      </a>
                   );
               }
             )}
