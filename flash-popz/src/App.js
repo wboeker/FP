@@ -6,6 +6,7 @@ import Home from './Home';
 import EpisodeList from './EpisodeList';
 import { Route, Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
 
 function App() {
   return (

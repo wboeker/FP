@@ -1,13 +1,8 @@
 .header {
-  margin-top: 20px;
   display: flex;
   flex-direction: column;
   align-content: center;
-}
-
-.row-wrapper {
-  display: flex;
-  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 h1 {
