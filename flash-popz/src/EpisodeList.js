@@ -1,25 +1,30 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './EpisodeList.css';
-import Episode from './Episode';
+import { Card } from 'react-bootstrap';
 
 class EpisodeList extends Component{
 
   render(props){
-      let shows = ["deathnote.jpg", "7seeds.jpg", "aggretsuko.jpg", "asilentvoice.jpg", "attackontitan.jpg",
-    "blueexorcist.jpg", "pokemon.jpg", "codegeass.jpg", "hunterxhunter.jpg", "ouranhostclub.jpg", "bleach.jpg",
-  "vampireknight.jpg"];
+    let showImages = ["deathnote1.jpg", "deathnote2.jpg", "deathnote3.jpg", "deathnote4.jpg", "deathnote5.jpg", "deathnote6.jpg"];
       return(
         <div className="episode-list">
-            {shows.map((show) =>
-              {
-                  return(
-                      <a href="/">
-                        <Episode image={show}/>
-                      </a>
-                  );
-              }
-            )}
+          {showImages.map((image, index) =>
+            {
+                return(
+                  <a href="/about" style={{textDecoration: "none", color: "inherit"}}>
+                    <Card className="text">
+                      <Card.Img variant="top" src={image} alt={`slide ${index}`}/>
+                      <Card.Body>
+                        <Card.Text>
+                          {`Episode ${index + 1}`}
+                        </Card.Text>
+                      </Card.Body>
+                    </Card>
+                  </a>
+                );
+            }
+          )}
         </div>
       )
   }

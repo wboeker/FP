@@ -1,10 +1,10 @@
-.episode {
+.show {
   width: 260px;
   height: 150.76px;
   margin-bottom: 15px;
 }
 
-.episode:hover {
+.show:hover {
     border: 5px solid #00aabb;
     border-radius: 5px;
 }

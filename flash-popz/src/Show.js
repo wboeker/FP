@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Image } from 'react-bootstrap';
-import './Episode.css';
+import './show.css';
 
-class Episode extends Component{
+class Show extends Component{
   constructor(props){
     super(props);
   }
 
   render(props){
       return(
-        <div className="episode">
+        <div className="show">
           <Image src={this.props.image} rounded fluid/>
         </div>
       );
   }
 }
 
-Episode.propTypes = {
+Show.propTypes = {
   image: PropTypes.string,
 }
 
-export default Episode;
+export default Show;
