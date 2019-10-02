@@ -1,2 +1,6 @@
   .episode-list {
+    margin: 0 25px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
