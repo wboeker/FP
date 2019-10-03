@@ -4,7 +4,7 @@ import './Header.css';
 import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
 
 class Header extends Component{
-  constructor(props){
+  constructor(props) {
     super(props);
   }
 
@@ -24,7 +24,7 @@ class Header extends Component{
               <Nav.Link href="/about">About</Nav.Link>
             </Nav>
             <Form inline className="search">
-              <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={this.handleSearch}/>
+              <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={this.props.handleSearch}/>
               <Button variant="outline-light">Search</Button>
             </Form>
           </Navbar>
@@ -33,7 +33,7 @@ class Header extends Component{
   }
 }
 
-Feed.propTypes = {
+Header.propTypes = {
   handleSearch: PropTypes.func,
 }
 

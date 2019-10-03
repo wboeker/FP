@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import './About.css';
 import { Figure, OverlayTrigger, Tooltip } from 'react-bootstrap';
 

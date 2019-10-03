@@ -4,9 +4,6 @@ import { Image } from 'react-bootstrap';
 import './Show.css';
 
 class Show extends Component{
-  constructor(props){
-    super(props);
-  }
 
   render(props){
       return(
