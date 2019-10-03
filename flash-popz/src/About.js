@@ -74,7 +74,7 @@ class About extends Component{
               Then, reward yourself by watching the episode on Netflix or other preferred third party sources.
             </p>
             <p>
-              With Flashpops, if you’re passionate about a certain type of media, you’re able to learn context-specific vocabulary and
+              With Flashpopz, if you’re passionate about a certain type of media, you’re able to learn context-specific vocabulary and
               motivate yourself to keep crunching through those flashcards.
             </p>
           </div>
