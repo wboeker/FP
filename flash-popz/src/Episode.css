@@ -1,0 +1,32 @@
+.episode {
+  display: flex;
+  justify-content: center;
+}
+
+.carousel-container {
+  height: 500px;
+  width: 900px;;
+  background-color: #3493d7;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.episode-title {
+  padding-top: 20px;
+  color: white;
+}
+
+.flash-wrapper {
+  height: 500px;
+  width: 900px;;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.bottom-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}

@@ -20,7 +20,7 @@ class Header extends Component{
             </div></Navbar.Brand>
             <Nav className="mr-auto">
               <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/list">Practice</Nav.Link>
+              <Nav.Link href="/episode">Practice</Nav.Link>
               <Nav.Link href="/about">About</Nav.Link>
             </Nav>
             <Form inline className="search">
