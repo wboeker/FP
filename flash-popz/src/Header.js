@@ -12,7 +12,7 @@ class Header extends Component{
             <Navbar.Brand href="/home">
               <div className="speech-wrapper">
                 <div className="speech-bubble">
-                  <h1>FlashPopz</h1>
+                  <h1 className="title">FlashPopz</h1>
                 </div>
             </div></Navbar.Brand>
             <Nav className="mr-auto">

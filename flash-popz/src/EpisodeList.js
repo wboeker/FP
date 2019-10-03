@@ -12,7 +12,7 @@ class EpisodeList extends Component{
           {showImages.map((image, index) =>
             {
                 return(
-                  <a href="/about" style={{textDecoration: "none", color: "inherit"}}>
+                  <a href="/episode" style={{textDecoration: "none", color: "inherit"}}>
                     <Card className="text">
                       <Card.Img variant="top" src={image} alt={`slide ${index}`}/>
                       <Card.Body>

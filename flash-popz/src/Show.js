@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Image } from 'react-bootstrap';
-import './show.css';
+import './Show.css';
 
 class Show extends Component{
   constructor(props){
