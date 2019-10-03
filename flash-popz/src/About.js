@@ -69,8 +69,11 @@ class About extends Component{
             <div>
               First, select a vocabulary pack for an anime episode on our website, and learn the words through our online quizzes.
             </div>
-            <p>
+            <div>
               Then, reward yourself by watching the episode on Netflix or other preferred third party sources.
+            </div>
+            <p>
+              Lastly, review the vocabulary to solidify your knowledge.
             </p>
             <p>
               With Flashpopz, if you’re passionate about a certain type of media, you’re able to learn context-specific vocabulary and
