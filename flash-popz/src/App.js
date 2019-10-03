@@ -11,9 +11,22 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
 
 function App() {
+  constructor(props) {
+    super(props);
+    this.handleSearch = this.handleSearch.bind(this);
+
+    this.state = {
+      searchVal: "",
+    }
+  }
+
+  handleSearch(event) {
+    this.setState({searchVal: event.target.value});
+  }
+
   return (
     <div className="App">
-      <Header/>
+      <Header handleSearch={this.handleSearch}/>
       <Route exact path="/" component={Home}/>
       <Route exact path="/list" component={EpisodeList}/>
       <Route exact path="/episode" component={Episode}/>
