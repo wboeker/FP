@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './Episode.css';
 import FlashCard from './FlashCard'
-import { Button } from 'react-bootstrap';
+import { Button, Dropdown, DropdownButton } from 'react-bootstrap';
 import { vocab } from './constants';
 
 class Episode extends Component{
@@ -38,8 +38,15 @@ class Episode extends Component{
                 english={vocab[index].english} sentence={vocab[index].sentence}/>
               </div>
             <div className="bottom-row">
-              <button type="button" class="btn btn-light" onClick={this.handlePrev}>Previous</button>
-              <button type="button" class="btn btn-light" onClick={this.handleNext}>Next</button>
+              <Button variant="light" onClick={this.handlePrev}>Previous</Button>
+              <DropdownButton
+                drop="up"
+                variant="info"
+                title="Sentence"
+              >
+                <Dropdown.Item>{vocab[index].sentence}</Dropdown.Item>
+              </DropdownButton>
+              <Button variant="light" onClick={this.handleNext}>Next</Button>
             </div>
           </div>
         </div>

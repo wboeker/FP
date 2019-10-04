@@ -12,8 +12,8 @@ class FlashCard extends Component{
         <div className="flash-card">
           <h2>{this.props.reading}</h2>
           <h1>{this.props.word}</h1>
+          <hr/>
           <h1>{this.props.english}</h1>
-          <h2>{this.props.sentence}</h2>
         </div>
       )
   }

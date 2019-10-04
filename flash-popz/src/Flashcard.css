@@ -1,3 +1,9 @@
 .flash-card {
   color: white;
 }
+
+hr {
+  background-color: #cfcfcf;
+  height: 1px;
+  border: 0;
+}
