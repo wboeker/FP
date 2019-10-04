@@ -26,8 +26,24 @@
   justify-content: center;
 }
 
+.sentence-wrapper {
+  height: 300px;
+  width: 900px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #dbf3fa;
+  border-radius: 5px;
+  flex-direction: column;
+}
+
 .bottom-row {
   display: flex;
   justify-content: space-between;
   padding: 20px;
+}
+
+.sentence-dropup {
+  padding: 5px;
 }
