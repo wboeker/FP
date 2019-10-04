@@ -11,9 +11,9 @@ class FlashCard extends Component{
       return(
         <div className="flash-card">
           <h2>{this.props.reading}</h2>
-          <h1>高校</h1>
-          <h1>High School</h1>
-          <h2>高校生なら、月曜日から金曜日まで高校に行かなければなりません。</h2>
+          <h1>{this.props.word}</h1>
+          <h1>{this.props.english}</h1>
+          <h2>{this.props.sentence}</h2>
         </div>
       )
   }
