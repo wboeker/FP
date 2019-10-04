@@ -12,3 +12,10 @@ sentReading: "かれ　は　だいがく　に　いれる　ように　いっ
 sentReading: "れっしゃ　は　いま　ついた　ばらり　です", engSent: "The train has just arrived here."},
 {word: "神", reading: "かみ", english: "God", sentence: "彼女は神を信じない",
 sentReading: "かのじょ　は　かみ　を　しんじない", engSent: "She doesn't believe in God."}];
+
+export const shows = [{name: "Death Note", image: "deathnote.jpg"}, {name: "7 Seeds", image: "7seeds.jpg"},
+{name: "Aggretsuko", image: "aggretsuko.jpg"}, {name: "A Silent Voice", image: "asilentvoice.jpg"},
+{name: "Attack on Titan", image: "attackontitan.jpg"}, {name: "Blue Exorcist", image: "blueexorcist.jpg"},
+{name: "Pokemon", image: "pokemon.jpg"}, {name: "Code Geass", image: "codegeass.jpg"},
+{name: "Hunter x Hunter", image: "hunterxhunter.jpg"}, {name: "Ouran High School Host Club", image: "ouranhostclub.jpg"},
+{name: "Bleach", image: "bleach.jpg"}, {name: "Vampire Knight", image: "vampireknight.jpg"}];
