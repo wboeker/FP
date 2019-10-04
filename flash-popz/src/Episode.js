@@ -48,12 +48,12 @@ class Episode extends Component{
                     <h3>{vocab[index].engSent}</h3>
                   </div>) :
                   (<FlashCard word={vocab[index].word} reading={vocab[index].reading}
-                      english={vocab[index].english} sentence={vocab[index].sentence}/>)
+                      english={vocab[index].english} sentence={vocab[index].sentence} isInput={vocab[index].isInput}/>)
                 }
               </div>
             <div className="bottom-row">
               <Button variant="light" onClick={this.handlePrev}>Previous</Button>
-              <Button variant="info" onClick={this.handleSentence}> {this.state.sentenceOpen ? ("Close") : ("Sentence")} </Button>
+              {vocab[index].isInput ? (<div></div>) : (<Button variant="info" onClick={this.handleSentence}> {this.state.sentenceOpen ? ("Close") : ("Sentence")} </Button>)}
               <Button variant="light" onClick={this.handleNext}>Next</Button>
             </div>
           </div>
