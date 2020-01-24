@@ -41,14 +41,18 @@ class Episode extends Component{
             <h3 className="episode-title"> Season 1 Episode 1: Rebirth </h3>
               <div className="flash-wrapper">
                 {this.state.sentenceOpen ?
-                  (<div className="sentence-wrapper">
-                    <p>{vocab[index].sentReading}</p>
-                    <h2>{vocab[index].sentence}</h2>
-                    <hr/>
-                    <h3>{vocab[index].engSent}</h3>
-                  </div>) :
-                  (<FlashCard word={vocab[index].word} reading={vocab[index].reading}
-                      english={vocab[index].english} sentence={vocab[index].sentence} isInput={vocab[index].isInput}/>)
+                  (
+                    <div className="sentence-wrapper">
+                      <p>{vocab[index].sentReading}</p>
+                      <h2>{vocab[index].sentence}</h2>
+                      <hr/>
+                      <h3>{vocab[index].engSent}</h3>
+                    </div>
+                  ) :
+                  (
+                    <FlashCard word={vocab[index].word} reading={vocab[index].reading}
+                      english={vocab[index].english} sentence={vocab[index].sentence} isInput={vocab[index].isInput}/>
+                  )
                 }
               </div>
             <div className="bottom-row">
