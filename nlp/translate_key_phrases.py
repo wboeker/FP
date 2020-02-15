@@ -34,10 +34,12 @@ def translations(document_list):
             translation_response = translator.translate(word, src='en', dest='ja')
             translated = translation_response.text
             hiragana = hiragana_translation(translated)
+            audio_filepath = "flash-popz/src/Data/audio_files/" + word
             vocab = {
               "word": translated,
               "reading": hiragana,
               "english": word,
+              "audio": audio_filepath,
               "isInput": False
             }
             add_card(vocab)

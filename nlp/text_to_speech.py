@@ -2,6 +2,7 @@ import os
 import requests
 import time
 from xml.etree import ElementTree
+import json
 
 try:
     input = raw_input
@@ -11,7 +12,7 @@ except NameError:
 class TextToSpeech(object):
     def __init__(self, subscription_key):
         self.subscription_key = subscription_key
-        self.tts = input("What would you like to convert to speech: ")
+        # self.tts = input("What would you like to convert to speech: ")
         self.timestr = time.strftime("%Y%m%d-%H%M")
         self.access_token = None
 
@@ -34,23 +35,33 @@ class TextToSpeech(object):
             'User-Agent': 'YOUR_RESOURCE_NAME'
         }
         xml_body = ElementTree.Element('speak', version='1.0')
-        xml_body.set('{http://www.w3.org/XML/1998/namespace}lang', 'en-us')
+        xml_body.set('{http://www.w3.org/XML/1998/namespace}lang', 'ja-jp')
         voice = ElementTree.SubElement(xml_body, 'voice')
-        voice.set('{http://www.w3.org/XML/1998/namespace}lang', 'en-US')
+        voice.set('{http://www.w3.org/XML/1998/namespace}lang', 'ja-JP')
         voice.set(
-            'name', 'Microsoft Server Speech Text to Speech Voice (en-US, Guy24KRUS)')
-        voice.text = self.tts
-        body = ElementTree.tostring(xml_body)
+            'name', 'Microsoft Server Speech Text to Speech Voice (ja-JP, Ayumi, Apollo)')
 
-        response = requests.post(constructed_url, headers=headers, data=body)
-        if response.status_code == 200:
-            with open('sample-' + self.timestr + '.wav', 'wb') as audio:
-                audio.write(response.content)
+        #opening the vocab json to create speech from japanese
+        with open('vocab_phrases.json', 'r') as myfile:
+            data = myfile.read()
+
+        # for loop for all the phrases begins here:
+        vocab_phrases = json.loads(data)["vocab"]
+        for phrase in vocab_phrases:
+            voice.text = phrase["word"]
+            body = ElementTree.tostring(xml_body)
+
+            response = requests.post(constructed_url, headers=headers, data=body)
+            if response.status_code == 200:
+                with open(phrase['english'] + '.wav', 'wb') as audio:
+
+                    #these eventually need to go into a subdirectory, not worth figuring out rn though.
+                    audio.write(response.content)
+                    print("\nStatus code: " + str(response.status_code) +
+                          "\nYour TTS is ready for playback.\n")
+            else:
                 print("\nStatus code: " + str(response.status_code) +
-                      "\nYour TTS is ready for playback.\n")
-        else:
-            print("\nStatus code: " + str(response.status_code) +
-                  "\nSomething went wrong. Check your subscription key and headers.\n")
+                      "\nSomething went wrong. Check your subscription key and headers.\n")
 
 if __name__ == "__main__":
     subscription_key = '55ac863576354b1dbe7bdbe717944b5d'
