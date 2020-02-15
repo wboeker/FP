@@ -58,9 +58,9 @@ class Episode extends Component{
   }
 
   updateVocab(){
-    const vocab = this.state.vocab;
+      this.state.currentVocab.isInput = true;
     this.setState({
-      currentVocab: this.getRandomCard(vocab)
+      currentVocab: this.getRandomCard(this.state.vocab)
     })
   }
 
