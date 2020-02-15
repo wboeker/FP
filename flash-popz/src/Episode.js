@@ -6,7 +6,6 @@ import { Button, Modal } from 'react-bootstrap';
 import { DB_CONFIG } from './Config/Firebase/db_config';
 import firebase from 'firebase/app';
 import 'firebase/database';
-// import { vocab } from './constants';
 
 class Episode extends Component{
   constructor(props) {
@@ -23,7 +22,8 @@ class Episode extends Component{
     this.state = {
       sentenceOpen: false,
       vocab: [],
-      currentVocab: {}
+      currentVocab: {},
+      indices: []
     }
   }
 
@@ -40,6 +40,10 @@ class Episode extends Component{
         sentReading: snap.val().sentReading,
         engSent: snap.val().engSent,
         isInput: snap.val().isInput
+      })
+
+      this.setState({
+        indices: this.state.vocab.map((word, index) => {return index;})
       })
 
       this.setState({
