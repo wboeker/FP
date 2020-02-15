@@ -13,6 +13,7 @@ class Episode extends Component{
     this.handleSentence = this.handleSentence.bind(this);
     this.getRandomCard = this.getRandomCard.bind(this);
     this.updateVocab = this.updateVocab.bind(this);
+    this.playSound = this.playSound.bind(this);
 
     if (!firebase.apps.length) {
        firebase.initializeApp(DB_CONFIG);
@@ -68,8 +69,36 @@ class Episode extends Component{
     })
   }
 
+  renderCorrect(){
+    if(this.state.sentenceOpen&&this.state.currentVocab.isInput){
+      return (<div className="sentence-wrapper">
+              <h1>{this.state.currentVocab.english}</h1>
+              </div>);
+    }
+    else if(this.state.sentenceOpen&&!this.state.currentVocab.isInput){
+      return (<div className="sentence-wrapper">
+              <p>{this.state.currentVocab.sentReading}</p>
+              <h2>{this.state.currentVocab.sentence}</h2>
+              <hr/>
+              <h3>{this.state.currentVocab.engSent}</h3>
+              </div>);
+    }
+    else{
+      return (<FlashCard key={this.state.currentVocab.word} index={this.state.currentIndex} word={this.state.currentVocab.word} reading={this.state.currentVocab.reading}
+        english={this.state.currentVocab.english} sentence={this.state.currentVocab.sentence} isInput={this.state.currentVocab.isInput}
+        updateIndices={this.updateIndices}/>);
+    }
+  }
+
+  playSound() {
+    let audio = new Audio("/Data/apartment.wav");
+    console.log(audio);
+    audio.play();
+  }
+
   render(props){
     let currentVocab = this.state.currentVocab;
+    let audio = new Audio("/Data/apartment.wav");
       return(
         <div className="episode">
           <div className="carousel-container">
@@ -91,7 +120,8 @@ class Episode extends Component{
                 }
               </div>
               <div className="bottom-row">
-                {currentVocab.isInput ? (<div></div>) : (<Button variant="info" onClick={this.handleSentence}> {this.state.sentenceOpen ? ("Close") : ("Sentence")} </Button>)}
+                {currentVocab.isInput ? (<Button variant="info" onClick={this.handleSentence}> {this.state.sentenceOpen ? ("Close") : ("Answer")} </Button>) : (<Button variant="info" onClick={this.handleSentence}> {this.state.sentenceOpen ? ("Close") : ("Sentence")} </Button>)}
+                <Button variant="light" onClick={this.playSound}>Play</Button>
                 <Button variant="light" onClick={this.updateVocab}>Next</Button>
               </div>
           </div>
