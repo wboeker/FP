@@ -13,6 +13,7 @@ class Episode extends Component{
     super(props);
     this.handleSentence = this.handleSentence.bind(this);
     this.getRandomCard = this.getRandomCard.bind(this);
+    this.updateVocab = this.updateVocab.bind(this);
 
     if (!firebase.apps.length) {
        firebase.initializeApp(DB_CONFIG);
@@ -56,6 +57,13 @@ class Episode extends Component{
     this.setState({sentenceOpen: !this.state.sentenceOpen});
   }
 
+  updateVocab(){
+    const vocab = this.state.vocab;
+    this.setState({
+      currentVocab: this.getRandomCard(vocab)
+    })
+  }
+
   render(props){
     let currentVocab = this.state.currentVocab;
       return(
@@ -77,6 +85,9 @@ class Episode extends Component{
                       english={currentVocab.english} sentence={currentVocab.sentence} isInput={currentVocab.isInput}/>
                   )
                 }
+              </div>
+              <div className="bottom-row">
+                <Button variant="light" onClick={this.updateVocab}>Next</Button>
               </div>
           </div>
         </div>
