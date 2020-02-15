@@ -10,15 +10,6 @@
       "isInput": false
     },
     {
-      "word": "悪い",
-      "reading": "わるい",
-      "english": "bad",
-      "sentence": "目に悪いから暗いところで本を読んではいけない。",
-      "sentReading": "め　に　わるい　から　くらい　ところ　で　ほん　を　よんで　は　いけない",
-      "engSent": "Because it is bad for your eyes, do not read under dim light.",
-      "isInput": true
-    },
-    {
       "word": "勝ち",
       "reading": "かち",
       "english": "win",
