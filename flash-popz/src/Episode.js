@@ -3,38 +3,69 @@ import PropTypes from 'prop-types';
 import './Episode.css';
 import FlashCard from './FlashCard'
 import { Button, Modal } from 'react-bootstrap';
-import { vocab } from './constants';
+import { DB_CONFIG } from './Config/Firebase/db_config';
+import firebase from 'firebase/app';
+import 'firebase/database';
+// import { vocab } from './constants';
 
 class Episode extends Component{
   constructor(props) {
     super(props);
-    this.handlePrev = this.handlePrev.bind(this);
     this.handleSentence = this.handleSentence.bind(this);
-    this.handleNext = this.handleNext.bind(this);
+    this.getRandomCard = this.getRandomCard.bind(this);
+
+    if (!firebase.apps.length) {
+       firebase.initializeApp(DB_CONFIG);
+    }
+    this.database = firebase.database().ref().child('vocab');
 
     this.state = {
-      index: 0,
       sentenceOpen: false,
+      vocab: [],
+      currentVocab: {
+        "word": "悪い",
+        "reading": "わるい",
+        "english": "bad",
+        "sentence": "目に悪いから暗いところで本を読んではいけない。",
+        "sentReading": "め　に　わるい　から　くらい　ところ　で　ほん　を　よんで　は　いけない",
+        "engSent": "Because it is bad for your eyes, do not read under dim light.",
+        "isInput": false
+      }
     }
   }
 
-  handlePrev(event) {
-    if (this.state.index > 0) {
-      this.setState({index: this.state.index - 1, sentenceOpen: false});
-    }
+  componentDidMount(){
+    const vocab = this.state.vocab;
+
+    this.database.on('child_added', snap => {
+      vocab.push({
+        id: snap.key,
+        word: snap.val().word,
+        reading: snap.val().reading,
+        english: snap.val().english,
+        sentence: snap.val().sentence,
+        sentReading: snap.val().sentReading,
+        engSent: snap.val().engSent,
+        isInput: snap.val().isInput
+      })
+
+      this.setState({
+        currentVocab: this.getRandomCard(vocab)
+      })
+    })
+  }
+
+  getRandomCard(vocab){
+    let currentVocab = vocab[Math.floor(Math.random() * vocab.length)];
+    return currentVocab;
   }
 
   handleSentence(event) {
     this.setState({sentenceOpen: !this.state.sentenceOpen});
   }
 
-  handleNext(event) {
-    if (this.state.index < vocab.length - 1)
-    this.setState({index: this.state.index + 1, sentenceOpen: false});
-  }
-
   render(props){
-    let index = this.state.index;
+    let currentVocab = this.state.currentVocab;
       return(
         <div className="episode">
           <div className="carousel-container">
@@ -43,23 +74,18 @@ class Episode extends Component{
                 {this.state.sentenceOpen ?
                   (
                     <div className="sentence-wrapper">
-                      <p>{vocab[index].sentReading}</p>
-                      <h2>{vocab[index].sentence}</h2>
+                      <p>{currentVocab.sentReading}</p>
+                      <h2>{currentVocab.sentence}</h2>
                       <hr/>
-                      <h3>{vocab[index].engSent}</h3>
+                      <h3>{currentVocab.engSent}</h3>
                     </div>
                   ) :
                   (
-                    <FlashCard word={vocab[index].word} reading={vocab[index].reading}
-                      english={vocab[index].english} sentence={vocab[index].sentence} isInput={vocab[index].isInput}/>
+                    <FlashCard word={currentVocab.word} reading={currentVocab.reading}
+                      english={currentVocab.english} sentence={currentVocab.sentence} isInput={currentVocab.isInput}/>
                   )
                 }
               </div>
-            <div className="bottom-row">
-              <Button variant="light" onClick={this.handlePrev}>Previous</Button>
-              {vocab[index].isInput ? (<div></div>) : (<Button variant="info" onClick={this.handleSentence}> {this.state.sentenceOpen ? ("Close") : ("Sentence")} </Button>)}
-              <Button variant="light" onClick={this.handleNext}>Next</Button>
-            </div>
           </div>
         </div>
       )
