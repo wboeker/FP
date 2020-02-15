@@ -46,11 +46,10 @@ def translations(document_list):
         'X-ClientTraceId': str(uuid.uuid4())
     }
 
-
+    vocab_list = []
 
     for document in document_list:
         print("Translating most relevant words in cluster: " + document['id'])
-        vocab_list = []
         for word in document['keyPhrases']:
             # translation_response = translator.translate(word, src='en', dest='ja')
             # translated = translation_response.text
@@ -61,7 +60,7 @@ def translations(document_list):
             response = request.json()
             translated = response[0]['translations'][0]['text']
             # translated = response_body
-            print(translated)
+            # print(translated)
             hiragana = hiragana_translation(translated)
             audio_filepath = "flash-popz/src/Data/audio_files/" + word+".wav"
             vocab = {
