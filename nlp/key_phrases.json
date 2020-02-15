@@ -1,0 +1,49 @@
+{
+  "documents": [
+    {
+      "id": "1",
+      "keyPhrases": [
+        "year",
+        "trail",
+        "trip",
+        "views",
+        "hike"
+      ]
+    },
+    {
+      "id": "2",
+      "keyPhrases": [
+        "marked trails",
+        "Worst hike",
+        "goners"
+      ]
+    },
+    {
+      "id": "3",
+      "keyPhrases": [
+        "trail",
+        "small children",
+        "family"
+      ]
+    },
+    {
+      "id": "4",
+      "keyPhrases": [
+        "spectacular views",
+        "trail",
+        "Worth",
+        "area"
+      ]
+    },
+    {
+      "id": "5",
+      "keyPhrases": [
+        "places",
+        "beautiful views",
+        "favorite trail",
+        "rest"
+      ]
+    }
+  ],
+  "errors": [ ]
+}
