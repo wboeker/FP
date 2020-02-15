@@ -63,9 +63,32 @@ class Episode extends Component{
 
   updateVocab(){
     this.state.currentVocab.isInput = true;
+    this.state.sentenceOpen = false;
+
     this.setState({
       currentVocab: this.getRandomCard(this.state.vocab, this.state.indices)
     })
+  }
+
+  renderCorrect(){
+    if(this.state.sentenceOpen&&this.state.currentVocab.isInput){
+      return (<div className="sentence-wrapper">
+              <h1>{this.state.currentVocab.english}</h1>
+              </div>);
+    }
+    else if(this.state.sentenceOpen&&!this.state.currentVocab.isInput){
+      return (<div className="sentence-wrapper">
+              <p>{this.state.currentVocab.sentReading}</p>
+              <h2>{this.state.currentVocab.sentence}</h2>
+              <hr/>
+              <h3>{this.state.currentVocab.engSent}</h3>
+              </div>);
+    }
+    else{
+      return (<FlashCard key={this.state.currentVocab.word} index={this.state.currentIndex} word={this.state.currentVocab.word} reading={this.state.currentVocab.reading}
+        english={this.state.currentVocab.english} sentence={this.state.currentVocab.sentence} isInput={this.state.currentVocab.isInput}
+        updateIndices={this.updateIndices}/>);
+    }
   }
 
   render(props){
@@ -75,23 +98,10 @@ class Episode extends Component{
           <div className="carousel-container">
             <h3 className="episode-title"> Season 1 Episode 1: Rebirth </h3>
               <div className="flash-wrapper">
-                {this.state.sentenceOpen ?
-                  (
-                    <div className="sentence-wrapper">
-                      <p>{currentVocab.sentReading}</p>
-                      <h2>{currentVocab.sentence}</h2>
-                      <hr/>
-                      <h3>{currentVocab.engSent}</h3>
-                    </div>
-                  ) :
-                  (
-                    <FlashCard key={currentVocab.word} word={currentVocab.word} reading={currentVocab.reading}
-                      english={currentVocab.english} sentence={currentVocab.sentence} isInput={currentVocab.isInput}/>
-                  )
-                }
+                {this.renderCorrect()}
               </div>
               <div className="bottom-row">
-                {currentVocab.isInput ? (<div></div>) : (<Button variant="info" onClick={this.handleSentence}> {this.state.sentenceOpen ? ("Close") : ("Sentence")} </Button>)}
+                {currentVocab.isInput ? (<Button variant="info" onClick={this.handleSentence}> {this.state.sentenceOpen ? ("Close") : ("Answer")} </Button>) : (<Button variant="info" onClick={this.handleSentence}> {this.state.sentenceOpen ? ("Close") : ("Sentence")} </Button>)}
                 <Button variant="light" onClick={this.updateVocab}>Next</Button>
               </div>
           </div>
