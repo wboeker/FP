@@ -6,6 +6,7 @@ import { Button, Modal } from 'react-bootstrap';
 import { DB_CONFIG } from './Config/Firebase/db_config';
 import firebase from 'firebase/app';
 import 'firebase/database';
+import { ReactComponent as SpeakerIcon } from './speaker.svg';
 
 class Episode extends Component{
   constructor(props) {
@@ -13,6 +14,7 @@ class Episode extends Component{
     this.handleSentence = this.handleSentence.bind(this);
     this.getRandomCard = this.getRandomCard.bind(this);
     this.updateVocab = this.updateVocab.bind(this);
+    this.playSound = this.playSound.bind(this);
 
     if (!firebase.apps.length) {
        firebase.initializeApp(DB_CONFIG);
@@ -91,8 +93,14 @@ class Episode extends Component{
     }
   }
 
+  playSound() {
+    // let audio = new Audio("/Data/apartment.wav");
+    // audio.play();
+  }
+        
   render(props){
     let currentVocab = this.state.currentVocab;
+    let audio = new Audio("/Data/apartment.wav");
       return(
         <div className="episode">
           <div className="carousel-container">
@@ -102,6 +110,7 @@ class Episode extends Component{
               </div>
               <div className="bottom-row">
                 {currentVocab.isInput ? (<Button variant="info" onClick={this.handleSentence}> {this.state.sentenceOpen ? ("Close") : ("Answer")} </Button>) : (<Button variant="info" onClick={this.handleSentence}> {this.state.sentenceOpen ? ("Close") : ("Sentence")} </Button>)}
+                <SpeakerIcon onClick={this.playSound}/>
                 <Button variant="light" onClick={this.updateVocab}>Next</Button>
               </div>
           </div>
