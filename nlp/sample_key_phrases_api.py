@@ -13,18 +13,25 @@ params = urllib.parse.urlencode({
     'showStats': '{boolean}',
 })
 
-with open('sample.json', 'r') as myfile:
+#opening the script data into json object
+with open('input.json', 'r') as myfile:
     data=myfile.read()
-
-print(type(data))
 
 try:
     conn = http.client.HTTPSConnection('eastus.api.cognitive.microsoft.com')
     conn.request("POST", "https://flashpopzkeyphrases.cognitiveservices.azure.com/text/analytics/v2.1/keyPhrases?%s" % params, data, headers)
     response = conn.getresponse()
     data = response.read()
-    print(data)
+
+
     conn.close()
+    print()
+    print("Writing this return body to json file: ")
+    response_json = data.decode('utf-8')
+
+    with open('key_phrases.json', 'w') as outfile:
+        outfile.write(response_json)
+
 except Exception as e:
     print("[Errno {0}] {1}".format(e.errno, e.strerror))
 
