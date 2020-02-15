@@ -65,6 +65,8 @@ class Episode extends Component{
 
   updateVocab(){
     this.state.currentVocab.isInput = true;
+    this.state.sentenceOpen = false;
+
     this.setState({
       currentVocab: this.getRandomCard(this.state.vocab, this.state.indices)
     })
@@ -95,7 +97,7 @@ class Episode extends Component{
     // let audio = new Audio("/Data/apartment.wav");
     // audio.play();
   }
-
+        
   render(props){
     let currentVocab = this.state.currentVocab;
     let audio = new Audio("/Data/apartment.wav");
@@ -104,20 +106,7 @@ class Episode extends Component{
           <div className="carousel-container">
             <h3 className="episode-title"> Season 1 Episode 1: Rebirth </h3>
               <div className="flash-wrapper">
-                {this.state.sentenceOpen ?
-                  (
-                    <div className="sentence-wrapper">
-                      <p>{currentVocab.sentReading}</p>
-                      <h2>{currentVocab.sentence}</h2>
-                      <hr/>
-                      <h3>{currentVocab.engSent}</h3>
-                    </div>
-                  ) :
-                  (
-                    <FlashCard key={currentVocab.word} word={currentVocab.word} reading={currentVocab.reading}
-                      english={currentVocab.english} sentence={currentVocab.sentence} isInput={currentVocab.isInput}/>
-                  )
-                }
+                {this.renderCorrect()}
               </div>
               <div className="bottom-row">
                 {currentVocab.isInput ? (<Button variant="info" onClick={this.handleSentence}> {this.state.sentenceOpen ? ("Close") : ("Answer")} </Button>) : (<Button variant="info" onClick={this.handleSentence}> {this.state.sentenceOpen ? ("Close") : ("Sentence")} </Button>)}
