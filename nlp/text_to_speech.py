@@ -53,8 +53,8 @@ class TextToSpeech(object):
 
             response = requests.post(constructed_url, headers=headers, data=body)
             if response.status_code == 200:
-                with open(phrase['english'] + '.wav', 'wb') as audio:
-
+                with open('/Users/anthonychan/GitHub/FP/flash-popz/src/Data/audio_files/'+
+                          phrase['english'] + '.wav', 'wb') as audio:
                     #these eventually need to go into a subdirectory, not worth figuring out rn though.
                     audio.write(response.content)
                     print("\nStatus code: " + str(response.status_code) +
