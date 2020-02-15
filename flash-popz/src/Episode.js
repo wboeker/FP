@@ -6,6 +6,7 @@ import { Button, Modal } from 'react-bootstrap';
 import { DB_CONFIG } from './Config/Firebase/db_config';
 import firebase from 'firebase/app';
 import 'firebase/database';
+import { ReactComponent as SpeakerIcon } from './speaker.svg';
 
 class Episode extends Component{
   constructor(props) {
@@ -121,7 +122,7 @@ class Episode extends Component{
               </div>
               <div className="bottom-row">
                 {currentVocab.isInput ? (<Button variant="info" onClick={this.handleSentence}> {this.state.sentenceOpen ? ("Close") : ("Answer")} </Button>) : (<Button variant="info" onClick={this.handleSentence}> {this.state.sentenceOpen ? ("Close") : ("Sentence")} </Button>)}
-                <Button variant="light" onClick={this.playSound}>Play</Button>
+                <SpeakerIcon onClick={this.playSound}/>
                 <Button variant="light" onClick={this.updateVocab}>Next</Button>
               </div>
           </div>
