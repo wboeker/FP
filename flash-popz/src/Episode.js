@@ -22,15 +22,7 @@ class Episode extends Component{
     this.state = {
       sentenceOpen: false,
       vocab: [],
-      currentVocab: {
-        "word": "悪い",
-        "reading": "わるい",
-        "english": "bad",
-        "sentence": "目に悪いから暗いところで本を読んではいけない。",
-        "sentReading": "め　に　わるい　から　くらい　ところ　で　ほん　を　よんで　は　いけない",
-        "engSent": "Because it is bad for your eyes, do not read under dim light.",
-        "isInput": false
-      }
+      currentVocab: {}
     }
   }
 
