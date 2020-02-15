@@ -14,7 +14,7 @@ params = urllib.parse.urlencode({
 })
 
 #opening the script data into json object
-with open('input_test_1.json', 'r') as myfile:
+with open('input.json', 'r') as myfile:
     data=myfile.read()
 
 try:
