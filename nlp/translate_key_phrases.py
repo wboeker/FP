@@ -24,13 +24,6 @@ for document in document_list:
         japanese_key_phrases.append(translated.text)
 
     print(japanese_key_phrases)
-        # print(translated.text)
-#     bag_of_word = document['keyPhrases']
-#     episode_bag = {}
-#     episode_bag['episode_id'] = document['id']
-#     episode_bag['bag_of_words'] = bag_of_word
-#     print(episode_bag)
-#     bags_of_words.append(episode_bag)
 
 # print(bags_of_words)
 
