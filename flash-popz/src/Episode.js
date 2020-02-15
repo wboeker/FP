@@ -87,6 +87,7 @@ class Episode extends Component{
                 }
               </div>
               <div className="bottom-row">
+                {currentVocab.isInput ? (<div></div>) : (<Button variant="info" onClick={this.handleSentence}> {this.state.sentenceOpen ? ("Close") : ("Sentence")} </Button>)}
                 <Button variant="light" onClick={this.updateVocab}>Next</Button>
               </div>
           </div>
