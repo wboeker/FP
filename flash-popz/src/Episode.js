@@ -13,6 +13,7 @@ class Episode extends Component{
     this.handleSentence = this.handleSentence.bind(this);
     this.getRandomCard = this.getRandomCard.bind(this);
     this.updateVocab = this.updateVocab.bind(this);
+    this.updateIndices = this.updateIndices.bind(this);
 
     if (!firebase.apps.length) {
        firebase.initializeApp(DB_CONFIG);
@@ -23,7 +24,8 @@ class Episode extends Component{
       sentenceOpen: false,
       vocab: [],
       currentVocab: {},
-      indices: []
+      indices: [],
+      currentIndex: 0
     }
   }
 
@@ -53,7 +55,8 @@ class Episode extends Component{
   }
 
   getRandomCard(vocab, indices){
-    let currentVocab = vocab[indices[Math.floor(Math.random() * indices.length)]];
+    this.setState({currentIndex: indices[Math.floor(Math.random() * indices.length)]});
+    let currentVocab = vocab[this.state.currentIndex];
     return currentVocab;
   }
 
@@ -68,8 +71,15 @@ class Episode extends Component{
     })
   }
 
+  updateIndices(index) {
+    this.setState(prevState => ({
+      indices: [...prevState.indices, index]
+    }))
+  }
+
   render(props){
     let currentVocab = this.state.currentVocab;
+    console.log(this.state.indices);
       return(
         <div className="episode">
           <div className="carousel-container">
@@ -85,8 +95,9 @@ class Episode extends Component{
                     </div>
                   ) :
                   (
-                    <FlashCard key={currentVocab.word} word={currentVocab.word} reading={currentVocab.reading}
-                      english={currentVocab.english} sentence={currentVocab.sentence} isInput={currentVocab.isInput}/>
+                    <FlashCard key={currentVocab.word} index={this.state.currentIndex} word={currentVocab.word} reading={currentVocab.reading}
+                      english={currentVocab.english} sentence={currentVocab.sentence} isInput={currentVocab.isInput}
+                      updateIndices={this.updateIndices}/>
                   )
                 }
               </div>

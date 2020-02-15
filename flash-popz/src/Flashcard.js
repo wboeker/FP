@@ -20,6 +20,7 @@ class FlashCard extends Component{
         this.setState({inputCorrect: 1});
       }
       else if (event.target.value.toLowerCase() !== this.props.english) {
+        this.props.updateIndices(this.props.index);
         this.setState({inputCorrect: 2});
       }
     }
@@ -38,6 +39,7 @@ class FlashCard extends Component{
   }
 
   render(props){
+    console.log(this.props.index);
       return(
         <div className="flash-card">
           <h2>{this.props.reading}</h2>
@@ -61,6 +63,8 @@ FlashCard.propTypes = {
   english: PropTypes.string,
   sentence: PropTypes.string,
   isInput: PropTypes.bool,
+  updateIndices: PropTypes.func,
+  index: PropTypes.number
 }
 
 export default FlashCard;
