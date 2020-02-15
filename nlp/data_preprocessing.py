@@ -86,11 +86,20 @@ def main(args):
 
     subtitles = open('01.eng.txt', 'r').read()
 
-    dict_for_json = {"language": "eng",
-                    "id":1,
-                    "text": subtitles}
-
+    #for loop in later implementation
+    dict_for_json = {
+        "documents": [
+            {"language": "en",
+             "id": 1,
+             "text": subtitles}
+        ]
+    }
+    #turning dict back into string
     json_file = json.dumps(dict_for_json)
+
+    print("data preprocessing completed, creating json input file for episode script")
+    with open('input.json', 'w') as outfile:
+        outfile.write(json_file)
 
 if __name__ == '__main__':
     main(sys.argv)

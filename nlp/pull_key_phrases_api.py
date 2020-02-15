@@ -26,7 +26,7 @@ try:
 
     conn.close()
     print()
-    print("Writing this return body to json file: ")
+    print("Writing this return body to key_phrases.json")
     response_json = data.decode('utf-8')
 
     with open('key_phrases.json', 'w') as outfile:
