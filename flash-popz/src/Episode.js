@@ -92,8 +92,8 @@ class Episode extends Component{
   }
 
   playSound() {
+    console.log("test");
     let audio = new Audio("/Data/apartment.wav");
-    console.log(audio);
     audio.play();
   }
 
