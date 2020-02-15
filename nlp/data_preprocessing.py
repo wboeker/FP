@@ -64,33 +64,57 @@ def clean_up(lines):
             new_lines[-1] = new_lines[-1].strip() + ' ' + line
         else:
             # append line
-            new_lines.append(line.rstrip())
+            new_lines.append(line.replace("\n", " "))
 
-        separator = " "
-        final_string = separator.join(new_lines)
-        final_string = final_string.replace("\n" ," ")
-
-    return final_string
+    return new_lines
 
 
-def new_file(file_name, file_encoding):
+# dividing subtitle lines into chunks
+def split_subtitles(lines):
+    list_len = len(lines)
+    split = 10
+    n = int(round(list_len / split))
+
+    sub_lists = []
+
+    for i in range(0, list_len, n):
+        x = i
+        sub_lists.append(lines[x:x + n])
+
+    separator = ""
+    chunks = []
+
+    for i, l in enumerate(sub_lists):
+        chunk = separator.join(sub_lists[i])
+        chunks.append(chunk.replace("\n", " "))
+
+    return chunks
+
+
+def read_file(file_name, file_encoding):
     with open(file_name, encoding=file_encoding, errors='replace') as f:
         lines = f.readlines()
         new_lines = clean_up(lines)
-    new_file_name = file_name[:-4] + '.txt'
-    with open(new_file_name, 'w') as f:
-        f.write(new_lines)
+
+    chunks = split_subtitles(new_lines)
+
+    return chunks
+
 
 def main(args):
-    new_file("01.eng.srt", 'utf-8')
+    chunks = read_file("01.eng.srt", 'utf-8')
 
-    subtitles = open('01.eng.txt', 'r').read()
+    dicts = []
+    for i, chunk in enumerate(chunks):
+        dict = {"language":"en", "id":i+1 , "text":chunk}
+        dicts.append(dict)
 
-    dict_for_json = {"language": "eng",
-                    "id":1,
-                    "text": subtitles}
+    json_dict = { "documents": dicts }
 
-    json_file = json.dumps(dict_for_json)
+    json_file = json.dumps(json_dict)
+
+    with open('input.json', 'w') as outfile:
+        outfile.write(json_file)
 
 if __name__ == '__main__':
     main(sys.argv)
