@@ -2,6 +2,11 @@ from googletrans import Translator
 import http.client, urllib.request, urllib.parse, urllib.error, base64
 import requests
 import json
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import db
+
+
 
 def prepare_document_list():
 
@@ -35,10 +40,18 @@ def translations(document_list):
               "english": word,
               "isInput": False
             }
+            add_card(vocab)
             vocab_list.append(vocab)
 
-        with open('vocab_phrases.json', 'w') as outfile:
-            outfile.write(vocab_list)
+        vocab_dict = {"vocab" : vocab_list}
+        print(vocab_dict)
+        print(json.dumps(vocab_dict))
+        # with open('vocab_phrases.json', 'w') as outfile:
+        #     outfile.write(json.dumps(vocab_dict))
+
+def add_card(vocab):
+    ref = db.reference()
+    ref.child('vocab').push().set(vocab)
 
 def hiragana_translation(data):
     headers = {
@@ -62,6 +75,7 @@ def hiragana_translation(data):
         # resp.encoding = 'utf-8'
         hiragana_response = json.loads(resp.content)
         # print(hiragana_response['converted'])
+        print(hiragana_response['converted'])
         return hiragana_response['converted']
 
     except Exception as e:
@@ -69,6 +83,9 @@ def hiragana_translation(data):
 
 
 if __name__ == '__main__':
+    cred = credentials.Certificate("./tartanhacks2020-firebase-adminsdk-8kbdj-64275d876e.json")
+    default_app = firebase_admin.initialize_app(cred, {'databaseURL': 'https://tartanhacks2020.firebaseio.com/'})
 
     document_list = prepare_document_list()
     translations(document_list)
+
