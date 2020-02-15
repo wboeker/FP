@@ -47,13 +47,13 @@ class Episode extends Component{
       })
 
       this.setState({
-        currentVocab: this.getRandomCard(vocab)
+        currentVocab: this.getRandomCard(vocab, this.state.indices)
       })
     })
   }
 
-  getRandomCard(vocab){
-    let currentVocab = vocab[Math.floor(Math.random() * vocab.length)];
+  getRandomCard(vocab, indices){
+    let currentVocab = vocab[indices[Math.floor(Math.random() * indices.length)]];
     return currentVocab;
   }
 
@@ -62,9 +62,9 @@ class Episode extends Component{
   }
 
   updateVocab(){
-      this.state.currentVocab.isInput = true;
+    this.state.currentVocab.isInput = true;
     this.setState({
-      currentVocab: this.getRandomCard(this.state.vocab)
+      currentVocab: this.getRandomCard(this.state.vocab, this.state.indices)
     })
   }
 
