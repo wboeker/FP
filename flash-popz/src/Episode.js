@@ -85,7 +85,7 @@ class Episode extends Component{
                     </div>
                   ) :
                   (
-                    <FlashCard word={currentVocab.word} reading={currentVocab.reading}
+                    <FlashCard key={currentVocab.word} word={currentVocab.word} reading={currentVocab.reading}
                       english={currentVocab.english} sentence={currentVocab.sentence} isInput={currentVocab.isInput}/>
                   )
                 }

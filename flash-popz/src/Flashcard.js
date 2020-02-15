@@ -7,17 +7,33 @@ class FlashCard extends Component{
   constructor(props) {
     super(props);
     this.handleInput = this.handleInput.bind(this);
+    this.renderCorrect = this.renderCorrect.bind(this);
+
     this.state = {
-      inputCorrect: false,
+      inputCorrect: 0,
     }
   }
 
   handleInput(event) {
-    if (event.target.value.toLowerCase() === this.props.english) {
-      this.setState({inputCorrect: true});
+    if(event.keyCode === 13) {
+      if (event.target.value.toLowerCase() === this.props.english) {
+        this.setState({inputCorrect: 1});
+      }
+      else if (event.target.value.toLowerCase() !== this.props.english) {
+        this.setState({inputCorrect: 2});
+      }
     }
-    else if (event.target.value.toLowerCase() !== this.props.english) {
-      this.setState({inputCorrect: false});
+  }
+
+  renderCorrect() {
+    if (this.state.inputCorrect === 0) {
+      return (<div></div>);
+    }
+    if (this.state.inputCorrect === 1) {
+      return (<div>Correct!</div>);
+    }
+    if (this.state.inputCorrect === 2) {
+      return (<div>Incorrect!</div>);
     }
   }
 
@@ -28,14 +44,11 @@ class FlashCard extends Component{
           <h1>{this.props.word}</h1>
           <hr/>
           {this.props.isInput ?
-            (<Form.Control type="text" onChange={this.handleInput}/>) :
+            (<Form.Control type="text" onKeyUp={this.handleInput}/>) :
             (<h1>{this.props.english}</h1>)
           }
           <div>
-            {this.state.inputCorrect && this.props.isInput ?
-              (<div>Correct!</div>) :
-              (<div></div>)
-            }
+            {this.renderCorrect()}
           </div>
         </div>
       )
@@ -47,7 +60,7 @@ FlashCard.propTypes = {
   reading: PropTypes.string,
   english: PropTypes.string,
   sentence: PropTypes.string,
-  isInput: PropTypes.bool
+  isInput: PropTypes.bool,
 }
 
 export default FlashCard;
